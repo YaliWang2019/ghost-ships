@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "GridAddress.hpp"
+#include "../src/GridAddress.hpp"
 
 GridAddress PromptForAddress() {
 
