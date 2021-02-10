@@ -24,20 +24,30 @@ GridAddress::GridAddress()
 
 GridAddress::GridAddress(char row, int column)
 {
-	row = toupper(row);
-	row_ = row;
+	row_ = toupper(row);
 	column_ = column;
+	if (!CanCompileAddress(row_, column_)) throw std::invalid_argument("Invalid Address Input");
 }
 
 GridAddress::GridAddress(std::string s)
 {
 	row_ = toupper(s[0]);
 	column_ = std::stoi(s.substr(1));
-
-	if (!CanCompileAddress(row_, column_)) throw std::invalid_argument("Invalid Address String");
+	if (!CanCompileAddress(row_, column_)) throw std::invalid_argument("Invalid Address Input");
 }
 
-
+bool GridAddress::IsValidInput(std::string s)
+{
+	char r = toupper(s[0]);
+	int c = 0; 
+	try {
+		c = std::stoi(s.substr(1));
+	}
+	catch (const std::invalid_argument&) {
+		return false;
+	}
+	return CanCompileAddress(r, c);
+}
 
 bool GridAddress::CanCompileAddress(char row, const int column)
 {

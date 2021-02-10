@@ -10,6 +10,7 @@ public:
 	GridAddress();
 	GridAddress(char row, int column);
 	GridAddress(std::string s);
+	static bool IsValidInput(std::string s);
 	static bool CanCompileAddress(char row, const int column);
 
 	char Row() { return row_; }

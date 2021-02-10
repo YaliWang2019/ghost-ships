@@ -38,4 +38,29 @@ TEST_CASE("String constructor functions") {
 	s += "B11";
 
 	REQUIRE_THROWS_AS([&]() { GridAddress gb(s); }(), std::invalid_argument);
+
+	s.clear();
+	s += "ADDRESS";
+
+	REQUIRE_THROWS_AS([&]() { GridAddress gb(s); }(), std::invalid_argument);
+}
+
+TEST_CASE("String verification of Address works") {
+		
+	std::vector<char> rows;
+	rows.push_back('A'); rows.push_back('B'); rows.push_back('C'); rows.push_back('D'); rows.push_back('E');
+	rows.push_back('F'); rows.push_back('G'); rows.push_back('H'); rows.push_back('I'); rows.push_back('J');
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 1; j < 11; j++) {
+			std::string s;
+			s += rows[i]; s += std::to_string(j);
+			REQUIRE(GridAddress::IsValidInput(s) == true);
+			s.clear();
+			s += tolower(rows[i]); s += std::to_string(j);
+			REQUIRE(GridAddress::IsValidInput(s) == true);
+		}
+	}
+
+	REQUIRE(GridAddress::IsValidInput("anything_else") == false);
 }
