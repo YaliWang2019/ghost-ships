@@ -59,8 +59,3 @@ bool GridAddress::CanCompileAddress(char row, const int column)
 
 	return true;
 }
-
-int GridAddress::GridIndex()
-{
-	return row_map[row_] *10 + column_ - 1;
-}

@@ -10,12 +10,14 @@ public:
 	GridAddress();
 	GridAddress(char row, int column);
 	GridAddress(std::string s);
-	static bool IsValidInput(std::string s);
-	static bool CanCompileAddress(char row, const int column);
 
 	char Row() { return row_; }
 	char Column() { return column_; }
-	int GridIndex();
+	int GridIndex() { return row_map[row_] * 10 + column_ - 1; }
+	std::string AsString() { return row_ + std::to_string(column_); }
+
+	static bool IsValidInput(std::string s);
+	static bool CanCompileAddress(char row, const int column);
 
 private:
 	char row_;
