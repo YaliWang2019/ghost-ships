@@ -14,7 +14,13 @@ std::map<char, int> GridAddress::row_map = {
 	{'J', 9},
 };
 
-GridAddress::GridAddress(char& row, int column)
+GridAddress::GridAddress()
+{
+	row_ = 'A';
+	column_ = 1;
+}
+
+GridAddress::GridAddress(char row, int column)
 {
 	row = toupper(row);
 	row_ = row;
@@ -25,8 +31,6 @@ bool GridAddress::CanCompileAddress(char& row, const int column)
 {
 	row = toupper(row);
 
-	/*if (row != 'A' && row != 'B' && row != 'C' && row != 'D' && row != 'E' &&
-		row != 'F' && row != 'G' && row != 'H' && row != 'I' && row != 'J') return false;*/
 	if (row_map.count(row) == 0) return false;
 	if (column < 1 || column > 10) return false;
 

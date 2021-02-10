@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\GridAddress.hpp" />
     <ClInclude Include="catch.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\GridAddress.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>

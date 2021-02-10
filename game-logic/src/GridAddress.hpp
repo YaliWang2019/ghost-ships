@@ -7,7 +7,8 @@ class GridAddress {
 
 public:
 
-	GridAddress(char& row, int column);
+	GridAddress();
+	GridAddress(char row, int column);
 	static bool CanCompileAddress(char& row, const int column);
 
 	char Row() { return row_; }
