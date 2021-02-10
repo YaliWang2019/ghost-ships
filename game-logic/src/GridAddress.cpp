@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stdexcept>
 #include <string>
 #include "GridAddress.hpp"
 
@@ -32,9 +33,13 @@ GridAddress::GridAddress(std::string s)
 {
 	row_ = toupper(s[0]);
 	column_ = std::stoi(s.substr(1));
+
+	if (!CanCompileAddress(row_, column_)) throw std::invalid_argument("Invalid Address String");
 }
 
-bool GridAddress::CanCompileAddress(char& row, const int column)
+
+
+bool GridAddress::CanCompileAddress(char row, const int column)
 {
 	row = toupper(row);
 

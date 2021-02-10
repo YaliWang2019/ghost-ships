@@ -28,4 +28,14 @@ TEST_CASE("String constructor functions") {
 
 	REQUIRE(ga.Row() == row);
 	REQUIRE(ga.Column() == col);
+
+	s.clear();
+	s += "K9";
+
+	REQUIRE_THROWS_AS([&]() { GridAddress gb(s); }(), std::invalid_argument);
+
+	s.clear();
+	s += "B11";
+
+	REQUIRE_THROWS_AS([&]() { GridAddress gb(s); }(), std::invalid_argument);
 }
