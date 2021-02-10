@@ -18,3 +18,14 @@ TEST_CASE("Parameterized constructor functions") {
 	REQUIRE(ga.Row() == row);
 	REQUIRE(ga.Column() == col);
 }
+
+TEST_CASE("String constructor functions") {
+
+	std::string s("J9");
+	GridAddress ga(s);
+	char row = s[0];
+	int col = std::stoi(s.substr(1));
+
+	REQUIRE(ga.Row() == row);
+	REQUIRE(ga.Column() == col);
+}
