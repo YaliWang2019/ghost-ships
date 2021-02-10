@@ -31,13 +31,14 @@ GridAddress::GridAddress(char row, int column)
 
 GridAddress::GridAddress(std::string s)
 {
+	if (!IsValidInput(s)) throw std::invalid_argument("Invalid Address Input");
 	row_ = toupper(s[0]);
 	column_ = std::stoi(s.substr(1));
-	if (!CanCompileAddress(row_, column_)) throw std::invalid_argument("Invalid Address Input");
 }
 
 bool GridAddress::IsValidInput(std::string s)
 {
+	if (s.size() < 2) return false;
 	char r = toupper(s[0]);
 	int c = 0; 
 	try {
