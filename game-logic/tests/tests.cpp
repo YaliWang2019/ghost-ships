@@ -8,3 +8,13 @@ TEST_CASE( "Default address is A1" ) {
 	REQUIRE(ga.Row() == 'A');
 	REQUIRE(ga.Column() == 1);
 }
+
+TEST_CASE("Parameterized constructor functions") {
+
+	char row = 'C';
+	int col = 9;
+	GridAddress ga(row, col);
+
+	REQUIRE(ga.Row() == row);
+	REQUIRE(ga.Column() == col);
+}
