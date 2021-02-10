@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <string>
 #include "GridAddress.hpp"
 
 std::map<char, int> GridAddress::row_map = {
@@ -25,6 +26,12 @@ GridAddress::GridAddress(char row, int column)
 	row = toupper(row);
 	row_ = row;
 	column_ = column;
+}
+
+GridAddress::GridAddress(std::string s)
+{
+	row_ = toupper(s[0]);
+	column_ = std::stoi(s.substr(1));
 }
 
 bool GridAddress::CanCompileAddress(char& row, const int column)
