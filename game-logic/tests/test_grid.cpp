@@ -19,4 +19,10 @@ TEST_CASE("Setting cell to ship status functions") {
 	bool result = g.SetShip(ga);
 	REQUIRE(result == true);
 	REQUIRE(g.CellStatus(ga) == "Ship");
+
+	result = g.SetShip(95);
+	REQUIRE(result == true);
+	REQUIRE(g.CellStatus(95) == "Ship");
+
+	REQUIRE_THROWS_AS([&]() { g.SetShip(-1); }(), std::out_of_range);
 }
