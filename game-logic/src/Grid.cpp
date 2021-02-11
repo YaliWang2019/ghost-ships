@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdexcept>
 #include "Grid.hpp"
 
@@ -16,4 +17,21 @@ bool Grid::SetShip(int index)
 		return true;
 	}
 	else return false;
+}
+
+std::ostream& operator<<(std::ostream& output, const Grid& g)
+{
+	int curr_cell = 0;
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			std::cout << " " <<g.cell_status[curr_cell] << " ";
+			curr_cell++;
+		}
+		std::cout << "\n";
+	}
+
+	return output;
 }
