@@ -14,6 +14,10 @@ public:
 	Grid() {}
 
 	std::string CellStatus(int index);
+	std::string CellStatus(GridAddress add) { return CellStatus(add.GridIndex()); }
+
+	bool SetShip(int index);
+	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }
 
 private:
 

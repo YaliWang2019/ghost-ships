@@ -6,3 +6,12 @@ std::map<int, std::string> Grid::status_string = {
 std::string Grid::CellStatus(int index) {
 	return status_string[cell_status[index]];
 }
+
+bool Grid::SetShip(int index)
+{
+	if (cell_status[index] == 0) {
+		cell_status[index] = 1;
+		return true;
+	}
+	else return false;
+}
