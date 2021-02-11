@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Grid.cpp" />
     <ClCompile Include="..\src\GridAddress.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
