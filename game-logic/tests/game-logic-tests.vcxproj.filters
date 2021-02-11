@@ -31,5 +31,11 @@
     <ClCompile Include="test_address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
