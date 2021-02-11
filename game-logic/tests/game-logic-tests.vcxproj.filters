@@ -17,15 +17,18 @@
     <ClInclude Include="..\src\GridAddress.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Grid.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests.cpp">
+    <ClCompile Include="..\src\GridAddress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GridAddress.cpp">
+    <ClCompile Include="test_address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

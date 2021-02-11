@@ -19,13 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Grid.hpp" />
     <ClInclude Include="..\src\GridAddress.hpp" />
     <ClInclude Include="catch.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\GridAddress.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="test_address.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
