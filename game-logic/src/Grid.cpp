@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "Grid.hpp"
 
 std::map<int, std::string> Grid::status_string = {
@@ -9,6 +10,7 @@ std::string Grid::CellStatus(int index) {
 
 bool Grid::SetShip(int index)
 {
+	if (index < 0 || index > 99) throw std::out_of_range("Index exceeds grid limits");
 	if (cell_status[index] == 0) {
 		cell_status[index] = 1;
 		return true;
