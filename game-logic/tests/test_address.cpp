@@ -45,6 +45,27 @@ TEST_CASE("String constructor functions") {
 	REQUIRE_THROWS_AS([&]() { GridAddress gb(s); }(), std::invalid_argument);
 }
 
+TEST_CASE("Index constructor functions") {
+
+	std::vector<char> rows;
+	rows.push_back('A'); rows.push_back('B'); rows.push_back('C'); rows.push_back('D'); rows.push_back('E');
+	rows.push_back('F'); rows.push_back('G'); rows.push_back('H'); rows.push_back('I'); rows.push_back('J');
+
+	int curr_index = 0;
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 1; j < 11; j++) {
+			std::string s;
+			s += rows[i]; s += std::to_string(j);
+			GridAddress ga(curr_index);
+			curr_index++;
+			REQUIRE(ga.AsString() == s);
+		}
+	}
+
+	REQUIRE(GridAddress::IsValidInput("anything_else") == false);
+}
+
 TEST_CASE("String verification of Address works") {
 		
 	std::vector<char> rows;
