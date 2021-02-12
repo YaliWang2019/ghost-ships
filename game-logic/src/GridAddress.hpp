@@ -2,6 +2,7 @@
 #define GHOST_SHIPS_GRID_ADDRESS_H
 
 #include <map>
+#include <vector>
 
 class GridAddress {
 
@@ -10,6 +11,7 @@ public:
 	GridAddress();
 	GridAddress(char row, int column);
 	GridAddress(std::string s);
+	GridAddress(int index);
 
 	char Row() { return row_; }
 	char Column() { return column_; }
@@ -23,6 +25,7 @@ private:
 	char row_;
 	int column_;
 	static std::map<char, int> row_map;
+	static std::vector<char> row_designators;
 };
 
 #endif
