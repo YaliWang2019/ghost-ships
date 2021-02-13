@@ -5,65 +5,56 @@
 
 int main()
 {   
-    {
-        ShipPlacement pl(5);
-        pl.Add(15);
-        pl.Add(25);
-        pl.Finalize();
-
-        std::cout << "START : " << pl.StartPoint().AsString() << "\n";
-        std::cout << "LENGTH: " << pl.Length() << "\n";
-        std::cout << "END   : " << pl.EndPoint().AsString() << "\n";
-    }
-
-
     Grid g;
-    Ship s{ "TestShip",2 };
-    GridAddress ga{ "C3" };
-
-    std::vector<ShipPlacement> places;
-    bool result = g.ValidPlacements(s, ga, places);
-
-    std::cout << " HAS PLACEMENTS : " << result << "\n";
-
-    for (auto& s : places) {
-        for (int i = 0; i < s.Length(); i++) {
-            GridAddress new_add{ s[i] };
-            std::cout << new_add.AsString() << " ";
-        }
-        std::cout << "\n";
-    }
-
-    
-
-
-    /*Grid g;
-    bool rerun = true;
 
     std::cout << "\nCurrent Board Positions : " << "\n";
     std::cout << "\n" << g << "\n";
 
-    while (rerun) {
+    ShipCollection sc;
 
-        std::string address_string("");
+    for (auto& s : sc.Ships()) {
 
-        while (!GridAddress::IsValidInput(address_string)) {
-            std::cout << "Enter ship position : \n";
-            std::cin >> address_string;
+        std::string address_string;
+        bool can_place = false;
+        std::vector<ShipPlacement> pl;
+
+        while (!can_place) {
+
+            address_string.clear();
+            while (!GridAddress::IsValidInput(address_string)) {
+                std::cout << "Enter start position for " << s.Name << " : \n";
+                std::cin >> address_string;
+            }
+            GridAddress start(address_string);
+
+            if (g.ValidPlacements(s, start, pl)) can_place = true;
         }
 
-        GridAddress ga(address_string);
-        g.SetShip(ga);
+
+        std::vector<std::string> valid_opts;
+        for (int i = 0; i < pl.size(); i++) valid_opts.push_back(std::to_string(i + 1));
+        std::string selected_opt;
+
+        can_place = false;
+        while (!can_place) {
+
+            std::cout << "\nEnter end position for " << s.Name << " : \n";
+            for (int i = 0; i < pl.size(); i++) {
+                std::cout << "[" << i+1 << "] for " << pl[i].EndPoint().AsString() << "\n";                
+            }
+            
+            std::cin >> selected_opt;
+            can_place = std::find(valid_opts.begin(), valid_opts.end(), selected_opt) != valid_opts.end();
+        }
+
+        int choice = std::stoi(selected_opt) - 1;
+        g.PlaceShip(s, pl[choice]);
 
         std::cout << "\nCurrent Board Positions : " << "\n";
         std::cout << "\n" << g << "\n";
 
-        std::cout << "Add another position? [ y / n ]" << "\n";
-        char c;
-        std::cin >> c;
-        rerun = toupper(c) == 'Y';
-    }*/
-
+        system("pause");
+    }
 
     std::cin.get();
 }

@@ -102,6 +102,7 @@ bool Grid::CanPlaceLeft(Ship s, int index, ShipPlacement& placement) const
 
 bool Grid::ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const
 {
+	if (cell_status[index] != 0) return false;
 	{
 		ShipPlacement placement(index);
 		if (CanPlaceUp(s, index, placement)) {

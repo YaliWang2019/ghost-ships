@@ -85,3 +85,11 @@ TEST_CASE("Grid place ship test") {
 		}
 	}
 }
+
+TEST_CASE("Ships cannot overlap") {
+
+	Ship{ "test",3 };
+	Grid g;
+	ShipPlacement p()
+
+}
