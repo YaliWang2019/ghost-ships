@@ -133,6 +133,14 @@ bool Grid::ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placem
 	return placements.size() > 0;
 }
 
+void Grid::PlaceShip(Ship s, ShipPlacement p)
+{
+	for (int i = 0; i < p.Length(); i++) {
+		cell_status[p[i]] = 1;
+		ship_names[p[i]] = s.Name;
+	}
+}
+
 
 std::ostream& operator<<(std::ostream& output, const Grid& g)
 {

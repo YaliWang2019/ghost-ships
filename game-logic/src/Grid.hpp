@@ -26,11 +26,15 @@ public:
 	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
 	{ return ValidPlacements(s, ga.GridIndex(), placements); }
 
+	void PlaceShip(Ship s, ShipPlacement p);
+	std::string ShipName(int index) const { return ship_names.at(index); }
+
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 
 private:
 
 	std::array<int, 100> cell_status = std::array<int, 100>();
+	std::map<int, std::string> ship_names;
 	static std::map<int, std::string> status_string;
 
 	bool CanPlaceUp(Ship s, int index, ShipPlacement& placement) const;
