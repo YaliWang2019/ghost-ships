@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include "GridAddress.hpp"
+#include "ShipCollection.hpp"
 
 class Grid {
 
@@ -14,8 +15,8 @@ public:
 
 	Grid() {}
 
-	std::string CellStatus(int index);
-	std::string CellStatus(GridAddress add) { return CellStatus(add.GridIndex()); }
+	std::string CellStatus(int index) const;
+	std::string CellStatus(GridAddress add) const { return CellStatus(add.GridIndex()); }
 
 	// NOTES : now need to change SetShip as written to private; public metho will use
 	//         an input Ship struct, and only return true if there is room to place ship;
@@ -25,6 +26,9 @@ public:
 
 	bool SetShip(int index);
 	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }
+
+	bool CanPlace(Ship s, int index) const;
+	bool CanPlace(Ship s, GridAddress ga) const { return CanPlace(s, ga.GridIndex()); }
 
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 
