@@ -8,6 +8,7 @@
 #include <vector>
 #include "GridAddress.hpp"
 #include "ShipCollection.hpp"
+#include "ShipPlacement.hpp"
 
 class Grid {
 
@@ -30,12 +31,21 @@ public:
 	bool CanPlace(Ship s, int index) const;
 	bool CanPlace(Ship s, GridAddress ga) const { return CanPlace(s, ga.GridIndex()); }
 
+	bool ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const;
+	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
+	{ return ValidPlacements(s, ga.GridIndex(), placements); }
+
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 
 private:
 
 	std::array<int, 100> cell_status = std::array<int, 100>();
 	static std::map<int, std::string> status_string;
+
+	bool CanPlaceUp(Ship s, int index, ShipPlacement& placement) const;
+	bool CanPlaceRight(Ship s, int index, ShipPlacement& placement) const;
+	bool CanPlaceDown(Ship s, int index, ShipPlacement& placement) const;
+	bool CanPlaceLeft(Ship s, int index, ShipPlacement& placement) const;
 };
 
 #endif

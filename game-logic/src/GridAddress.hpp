@@ -2,6 +2,7 @@
 #define GHOST_SHIPS_GRID_ADDRESS_H
 
 #include <map>
+#include <string>
 #include <vector>
 
 class GridAddress {
