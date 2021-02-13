@@ -28,7 +28,7 @@ TEST_CASE("Setting cell to ship status functions") {
 	REQUIRE_THROWS_AS([&]() { g.SetShip(-1); }(), std::out_of_range);
 }
 
-TEST_CASE("Ship placement test") {
+TEST_CASE("Grid valid placement test") {
 
 	Grid g;
 	Ship s1{ "TestShip", 2 };
@@ -64,4 +64,24 @@ TEST_CASE("Ship placement test") {
 	result = g.ValidPlacements(s2, ga2, places);
 
 	REQUIRE(result == false);
+}
+
+TEST_CASE("Grid place ship test") {
+
+	int ship_length = 3;
+	std::string ship_name = "vessel";
+	GridAddress starting_point("B9");
+	Ship s{ ship_name,ship_length };
+
+	Grid g;
+	std::vector<ShipPlacement> p;
+	g.ValidPlacements(s, starting_point, p);	
+	
+	for (auto& pl : p) {
+		g.PlaceShip(s, pl);
+		for (int i = 0; i < pl.Length(); i++) {
+			REQUIRE(g.CellStatus(pl[i]) == "Ship");
+			REQUIRE(g.ShipName(pl[i]) == ship_name);
+		}
+	}
 }
