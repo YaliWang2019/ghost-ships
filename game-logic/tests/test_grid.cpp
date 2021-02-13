@@ -42,3 +42,21 @@ TEST_CASE("Ship placement test functions") {
 
 	REQUIRE(g.CanPlace(s, 11) == false);
 }
+
+TEST_CASE("Ship placement test") {
+
+	Grid g;
+	Ship s{ "TestShip", 2 };
+	GridAddress ga{ "C3" };
+
+	std::vector<ShipPlacement> places;
+	bool result = g.ValidPlacements(s, ga, places);
+	
+	REQUIRE(result == true);
+	REQUIRE(places.size() == 4);
+
+	for (auto& p : places) {
+		REQUIRE(p.Length() == s.Length);
+	}
+
+}
