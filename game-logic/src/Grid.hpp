@@ -19,17 +19,8 @@ public:
 	std::string CellStatus(int index) const;
 	std::string CellStatus(GridAddress add) const { return CellStatus(add.GridIndex()); }
 
-	// NOTES : now need to change SetShip as written to private; public metho will use
-	//         an input Ship struct, and only return true if there is room to place ship;
-	//         then need a function for outputting legitimate end-points to choose from;
-	//         will also need a private function that calls SetShip for every cell the
-	//         input vessel covers.
-
-	bool SetShip(int index);
-	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }
-
-	bool CanPlace(Ship s, int index) const;
-	bool CanPlace(Ship s, GridAddress ga) const { return CanPlace(s, ga.GridIndex()); }
+	bool SetShip(int index);                                              // using while testing;
+	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }      // using while testing;
 
 	bool ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const;
 	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
