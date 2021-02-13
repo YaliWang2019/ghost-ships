@@ -46,17 +46,37 @@ TEST_CASE("Ship placement test functions") {
 TEST_CASE("Ship placement test") {
 
 	Grid g;
-	Ship s{ "TestShip", 2 };
-	GridAddress ga{ "C3" };
+	Ship s1{ "TestShip", 2 };
+	GridAddress ga1{ "C3" };
 
 	std::vector<ShipPlacement> places;
-	bool result = g.ValidPlacements(s, ga, places);
+	bool result = g.ValidPlacements(s1, ga1, places);
 	
 	REQUIRE(result == true);
 	REQUIRE(places.size() == 4);
 
 	for (auto& p : places) {
-		REQUIRE(p.Length() == s.Length);
+		REQUIRE(p.Length() == s1.Length);
 	}
 
+	Ship s2{ "TestVessel",4 };
+	GridAddress ga2{ "I9" };
+
+	places.clear();
+	result = g.ValidPlacements(s2, ga2, places);
+
+	REQUIRE(result == true);
+	REQUIRE(places.size() == 2);
+
+	for (auto& p : places) {
+		REQUIRE(p.Length() == s2.Length);
+	}
+
+	g.SetShip(GridAddress("I8"));
+	g.SetShip(GridAddress("H9"));
+
+	places.clear();
+	result = g.ValidPlacements(s2, ga2, places);
+
+	REQUIRE(result == false);
 }
