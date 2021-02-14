@@ -6,11 +6,10 @@
 int main()
 {   
     Grid g;
+    ShipCollection sc;
 
     std::cout << "\nCurrent Board Positions : " << "\n";
     std::cout << "\n" << g << "\n";
-
-    ShipCollection sc;
 
     for (auto& s : sc.Ships()) {
 
@@ -22,7 +21,7 @@ int main()
 
             address_string.clear();
             while (!GridAddress::IsValidInput(address_string)) {
-                std::cout << "Enter start position for " << s.Name << " : \n";
+                std::cout << "\n\nEnter start position for " << s.Name << " : \n";
                 std::cin >> address_string;
             }
             GridAddress start(address_string);
@@ -50,11 +49,23 @@ int main()
         int choice = std::stoi(selected_opt) - 1;
         g.PlaceShip(s, pl[choice]);
 
+        for (int i = 0; i < 100; i++) std::cout << "\n";
         std::cout << "\nCurrent Board Positions : " << "\n";
-        std::cout << "\n" << g << "\n";
+        std::cout << "\n" << g << "\n\n\n";
 
         system("pause");
     }
+    
+    Grid g2;
+    g2.PlaceAuto(sc);
 
-    std::cin.get();
+    for (int i = 0; i < 100; i++) std::cout << "\n";
+    std::cout << "\nFinal Player Positions : " << "\n";
+    std::cout << "\n" << g << "\n\n\n";
+
+    std::cout << "\nFinal PC Positions : " << "\n";
+    std::cout << "\n" << g2 << "\n\n\n";
+
+    std::cout << "\n\n";
+    system("pause");
 }
