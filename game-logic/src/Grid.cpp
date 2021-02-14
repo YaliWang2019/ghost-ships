@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <stdexcept>
 #include "Grid.hpp"
 
@@ -142,6 +143,41 @@ void Grid::PlaceShip(Ship s, ShipPlacement p)
 	}
 }
 
+void Grid::PlaceAuto(ShipCollection ships)
+{
+	// 01 per ship, choose random index 0 - 99
+	// 02 per valid orientations, choose random
+	//    [ if none, choose new index ]
+
+	std::random_device rd;
+	std::default_random_engine re(rd());
+	std::uniform_int_distribution<int> index_dist(0, 99);
+	std::uniform_int_distribution<int> placement_dist(0, 3);
+
+	for (auto& s : ships.Ships()) {
+		
+		int index;
+		std::vector<ShipPlacement> placements;
+
+		bool can_use = false;
+		while (!can_use) {
+
+			index = index_dist(re);
+			can_use = true;
+			placements.clear();
+
+			if (CellStatus(index) == "Ship") can_use = false;
+			if (!ValidPlacements(s, index, placements)) can_use = false;
+		}
+
+		int placement_selection = 4;
+		while (placement_selection >= placements.size()) {
+			placement_selection = placement_dist(re);
+		}
+
+		PlaceShip(s, placements[placement_selection]);
+	}
+}
 
 std::ostream& operator<<(std::ostream& output, const Grid& g)
 {

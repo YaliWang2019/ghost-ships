@@ -29,6 +29,8 @@ public:
 	void PlaceShip(Ship s, ShipPlacement p);
 	std::string ShipName(int index) const { return ship_names.at(index); }
 
+	void PlaceAuto(ShipCollection ships);
+
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 
 private:
