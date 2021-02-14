@@ -1,4 +1,5 @@
 #include "catch.hpp"
+#include <iostream>
 #include "../src/Grid.hpp"
 #include "../src/GridAddress.hpp"
 #include "../src/ShipCollection.hpp"
@@ -84,4 +85,24 @@ TEST_CASE("Grid place ship test") {
 			REQUIRE(g.ShipName(pl[i]) == ship_name);
 		}
 	}
+}
+
+TEST_CASE("Valid placements should not overlap existing") {
+
+	Grid g;
+	g.SetShip(11); g.SetShip(21); g.SetShip(31); g.SetShip(30);
+
+	std::cout << g << "\n\n";
+
+	Ship s{ "test_vessel",3 };
+
+	std::vector<ShipPlacement> pl;
+	bool result = g.ValidPlacements(s, 10, pl);
+	REQUIRE(result == false);
+	result = g.ValidPlacements(s, 20, pl);
+	REQUIRE(result == false);
+
+	result = g.ValidPlacements(s, 0, pl);
+	REQUIRE(result == true);
+	REQUIRE(pl.size() == 2);
 }
