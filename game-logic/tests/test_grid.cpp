@@ -92,17 +92,33 @@ TEST_CASE("Valid placements should not overlap existing") {
 	Grid g;
 	g.SetShip(11); g.SetShip(21); g.SetShip(31); g.SetShip(30);
 
-	std::cout << g << "\n\n";
-
 	Ship s{ "test_vessel",3 };
 
 	std::vector<ShipPlacement> pl;
 	bool result = g.ValidPlacements(s, 10, pl);
 	REQUIRE(result == false);
+	
 	result = g.ValidPlacements(s, 20, pl);
-	REQUIRE(result == false);
+	REQUIRE(result == true);
+	REQUIRE(pl.size() == 1);
+	
+	pl.clear();
 
 	result = g.ValidPlacements(s, 0, pl);
 	REQUIRE(result == true);
 	REQUIRE(pl.size() == 2);
+
+	for (int num_tests = 0; num_tests < 50; num_tests++) {
+
+		Grid g2;
+		ShipCollection sc;
+		g2.PlaceAuto(sc);
+
+		int total_lengths = 0;
+		for (auto& s : sc.Ships()) total_lengths += s.Length;
+
+		int total_ship_spaces = 0;
+		for (int i = 0; i < 100; i++) if (g2.CellStatus(i) == "Ship") total_ship_spaces++;
+		REQUIRE(total_lengths == total_ship_spaces);
+	}
 }
