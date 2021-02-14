@@ -187,7 +187,12 @@ std::ostream& operator<<(std::ostream& output, const Grid& g)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			std::cout << " " <<g.cell_status[curr_cell] << " ";
+			//std::cout << " " <<g.cell_status[curr_cell] << " ";
+			if (g.cell_status[curr_cell] == 0) std::cout << " .. ";
+			else if (g.cell_status[curr_cell] == 1) {
+				std::cout << " " << g.ShipName(curr_cell).substr(0,2) << " ";
+			}
+			// add hit / miss output here once implemented
 			curr_cell++;
 		}
 		std::cout << "\n";
