@@ -14,6 +14,7 @@ class ShipCollection {
 public:
 
 	ShipCollection();
+
 	const std::vector<Ship>& Ships() const { return ships; }
 
 private:

@@ -9,7 +9,6 @@ class ShipPlacement {
 public:
 
 	ShipPlacement(int index);
-	~ShipPlacement() {}
 
 	GridAddress StartPoint() const { return start_; }
 	GridAddress EndPoint() const { return end_; }
