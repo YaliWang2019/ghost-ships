@@ -22,6 +22,9 @@ public:
 	bool SetShip(int index);                                              // using while testing;
 	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }      // using while testing;
 
+	void SetHit(int index) { cell_status[index] = 2; }
+	void SetMiss(int index) { cell_status[index] = 3; }
+
 	bool ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const;
 	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
 	{ return ValidPlacements(s, ga.GridIndex(), placements); }
