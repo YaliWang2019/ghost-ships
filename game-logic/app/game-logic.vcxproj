@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Grid.cpp" />
     <ClCompile Include="..\src\GridAddress.cpp" />
+    <ClCompile Include="..\src\ShipCollection.cpp" />
+    <ClCompile Include="..\src\ShipPlacement.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Grid.hpp" />
     <ClInclude Include="..\src\GridAddress.hpp" />
+    <ClInclude Include="..\src\ShipCollection.hpp" />
+    <ClInclude Include="..\src\ShipPlacement.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
