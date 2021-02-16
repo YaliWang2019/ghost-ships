@@ -36,6 +36,7 @@
     <ClCompile Include="test_address.cpp" />
     <ClCompile Include="test_grid.cpp" />
     <ClCompile Include="test_ships.cpp" />
+    <ClCompile Include="test_turns.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
