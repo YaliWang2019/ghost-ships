@@ -8,4 +8,6 @@ ShipCollection::ShipCollection() {
 	ships.push_back(Ship{ "Cruiser", 3 });
 	ships.push_back(Ship{ "Submarine", 3 });
 	ships.push_back(Ship{ "Destroyer", 2 });
+
+	total_ship_length = 17;
 }
