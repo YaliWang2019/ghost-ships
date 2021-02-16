@@ -2,9 +2,10 @@
 #include <string>
 #include "../src/Grid.hpp"
 #include "../src/GridAddress.hpp"
+#include "../src/Turn.hpp"
 
-int main()
-{   
+void PlacementDemo()
+{
     Grid g;
     ShipCollection sc;
 
@@ -39,9 +40,9 @@ int main()
 
             std::cout << "\nEnter end position for " << s.Name << " : \n";
             for (int i = 0; i < pl.size(); i++) {
-                std::cout << "[" << i+1 << "] for " << pl[i].EndPoint().AsString() << "\n";                
+                std::cout << "[" << i + 1 << "] for " << pl[i].EndPoint().AsString() << "\n";
             }
-            
+
             std::cin >> selected_opt;
             can_place = std::find(valid_opts.begin(), valid_opts.end(), selected_opt) != valid_opts.end();
         }
@@ -55,7 +56,7 @@ int main()
 
         system("pause");
     }
-    
+
     Grid g2;
     g2.PlaceAuto(sc);
 
@@ -68,4 +69,52 @@ int main()
 
     std::cout << "\n\n";
     system("pause");
+}
+
+void FiringDemo()
+{
+    ShipCollection sc;
+
+    Grid g;
+    g.PlaceAuto(sc);
+
+    std::cout << "\nShip Positions : " << "\n";
+    std::cout << "\n" << g << "\n\n\n";
+
+    while (g.TotalHits() != sc.TotalLength())
+    {
+        std::string address_string;
+        bool valid_input = false;
+        int fire_index;
+
+        while (!valid_input) {
+
+            address_string.clear();
+            while (!GridAddress::IsValidInput(address_string)) {
+                std::cout << "\nEnter position to fire on :\n";
+                std::cin >> address_string;
+            }
+
+            GridAddress fire_location(address_string);
+            valid_input = (g.CellStatus(fire_location) == "Empty" || g.CellStatus(fire_location) == "Ship");
+            fire_index = fire_location.GridIndex();
+        }
+        
+        Turn t(fire_index, g);
+
+        if (t.IsHit()) {
+            std::cout << "\nHit!";
+            if (t.IsShipSunk()) std::cout << " You sunk the " + g.ShipName(fire_index) << "!";
+            std::cout << "\n";
+        }
+        else std::cout << "\nMiss!\n";
+    }
+
+    system("pause");
+}
+
+int main()
+{
+    //PlacementDemo();
+    FiringDemo();
 }

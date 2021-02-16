@@ -23,6 +23,7 @@
     <ClCompile Include="..\src\GridAddress.cpp" />
     <ClCompile Include="..\src\ShipCollection.cpp" />
     <ClCompile Include="..\src\ShipPlacement.cpp" />
+    <ClCompile Include="..\src\Turn.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClInclude Include="..\src\GridAddress.hpp" />
     <ClInclude Include="..\src\ShipCollection.hpp" />
     <ClInclude Include="..\src\ShipPlacement.hpp" />
+    <ClInclude Include="..\src\Turn.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
