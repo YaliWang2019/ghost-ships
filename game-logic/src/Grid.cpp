@@ -195,7 +195,8 @@ std::ostream& operator<<(std::ostream& output, const Grid& g)
 			else if (g.cell_status[curr_cell] == 1) {
 				std::cout << " " << g.ShipName(curr_cell).substr(0,2) << " ";
 			}
-			// add hit / miss output here once implemented
+			else if (g.cell_status[curr_cell] == 2) std::cout << " XX ";
+			else std::cout << " oo ";
 			curr_cell++;
 		}
 		std::cout << "\n";
