@@ -21,6 +21,12 @@ bool Grid::SetShip(int index)
 	else return false;
 }
 
+void Grid::SetHit(int index) 
+{
+	cell_status[index] = 2;
+	total_hits++;
+}
+
 bool Grid::CanPlaceUp(Ship s, int index, ShipPlacement& placement) const
 {
 	bool can_move_up = true;

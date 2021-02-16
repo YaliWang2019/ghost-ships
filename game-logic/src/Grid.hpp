@@ -22,8 +22,10 @@ public:
 	bool SetShip(int index);                                              // using while testing;
 	bool SetShip(GridAddress ga) { return SetShip(ga.GridIndex()); }      // using while testing;
 
-	void SetHit(int index) { cell_status[index] = 2; }
+	void SetHit(int index);
 	void SetMiss(int index) { cell_status[index] = 3; }
+
+	int TotalHits() { return total_hits; }
 
 	bool ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const;
 	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
@@ -41,6 +43,8 @@ private:
 
 	std::array<int, 100> cell_status = std::array<int, 100>();
 	
+	int total_hits;
+
 	std::map<int, int> ship_at_cell_index;	
 	std::vector<Ship> ships;
 	std::vector<ShipPlacement> ship_placements;
