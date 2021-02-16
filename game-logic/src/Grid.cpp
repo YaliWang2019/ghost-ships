@@ -26,7 +26,7 @@ bool Grid::CanPlaceUp(Ship s, int index, ShipPlacement& placement) const
 	bool can_move_up = true;
 	for (int i = 1; i < s.Length; i++) {
 		index -= 10;
-		if (index < 0 || CellStatus(index) != "Empty") {
+		if (index < 0 || cell_status[index] != 0) {
 			can_move_up = false;
 			break;
 		}
@@ -45,7 +45,7 @@ bool Grid::CanPlaceRight(Ship s, int index, ShipPlacement& placement) const
 		index++;
 		if (index < 99) {
 			GridAddress new_address(index);
-			if (new_address.Row() != test_address.Row() || CellStatus(index) != "Empty") {
+			if (new_address.Row() != test_address.Row() || cell_status[index] != 0) {
 				can_move_right = false;
 				break;
 			}
@@ -66,7 +66,7 @@ bool Grid::CanPlaceDown(Ship s, int index, ShipPlacement& placement) const
 	bool can_move_down = true;
 	for (int i = 1; i < s.Length; i++) {
 		index += 10;
-		if (index > 99 || CellStatus(index) != "Empty") {
+		if (index > 99 || cell_status[index] != 0) {
 			can_move_down = false;
 			break;
 		}
@@ -85,7 +85,7 @@ bool Grid::CanPlaceLeft(Ship s, int index, ShipPlacement& placement) const
 		index--;
 		if (index > -1) {
 			GridAddress new_address(index);
-			if (new_address.Row() != test_address.Row() || CellStatus(index) != "Empty") {
+			if (new_address.Row() != test_address.Row() || cell_status[index] != 0) {
 				can_move_left = false;
 				break;
 			}
@@ -137,9 +137,12 @@ bool Grid::ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placem
 
 void Grid::PlaceShip(Ship s, ShipPlacement p)
 {
+	ships.push_back(s);
+	ship_placements.push_back(p);
+
 	for (int i = 0; i < p.Length(); i++) {
 		cell_status[p[i]] = 1;
-		ship_names[p[i]] = s.Name;
+		ship_at_cell_index.emplace(p[i], ships.size() - 1);
 	}
 }
 
@@ -166,7 +169,7 @@ void Grid::PlaceAuto(ShipCollection ships)
 			can_use = true;
 			placements.clear();
 
-			if (CellStatus(index) == "Ship") can_use = false;
+			if (cell_status[index] == 1) can_use = false;
 			if (!ValidPlacements(s, index, placements)) can_use = false;
 		}
 

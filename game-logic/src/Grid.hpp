@@ -30,16 +30,20 @@ public:
 	{ return ValidPlacements(s, ga.GridIndex(), placements); }
 
 	void PlaceShip(Ship s, ShipPlacement p);
-	std::string ShipName(int index) const { return ship_names.at(index); }
-
 	void PlaceAuto(ShipCollection ships);
+
+	std::string ShipName(int index) const { return ships[ship_at_cell_index.at(index)].Name; }
 
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 
 private:
 
 	std::array<int, 100> cell_status = std::array<int, 100>();
-	std::map<int, std::string> ship_names;
+	
+	std::map<int, int> ship_at_cell_index;	
+	std::vector<Ship> ships;
+	std::vector<ShipPlacement> ship_placements;
+
 	static std::map<int, std::string> status_string;
 
 	bool CanPlaceUp(Ship s, int index, ShipPlacement& placement) const;
