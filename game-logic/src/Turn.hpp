@@ -11,11 +11,14 @@ public:
 	Turn(int index, Grid& g);
 	Turn(GridAddress ga, Grid& g) : Turn(ga.GridIndex(), g) {}
 
-	std::string Outcome() const { return turn_outcome; }
+	bool IsHit() { return is_hit; }
+	bool IsShipSunk() { return is_ship_sunk; }
 
 private:
 
-	std::string turn_outcome;
+	bool is_hit;
+	bool is_ship_sunk;
+
 };
 
 #endif
