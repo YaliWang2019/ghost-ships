@@ -33,6 +33,7 @@ public:
 	void PlaceAuto(ShipCollection ships);
 
 	std::string ShipName(int index) const { return ships[ship_at_cell_index.at(index)].Name; }
+	const ShipPlacement& GetShipPlacement(int index) const { return ship_placements[ship_at_cell_index.at(index)]; }
 
 	friend std::ostream& operator<<(std::ostream& output, const Grid& g);
 

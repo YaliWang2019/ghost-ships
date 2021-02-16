@@ -9,7 +9,7 @@ class Turn {
 public:
 
 	Turn(int index, Grid& g);
-	Turn(GridAddress ga, Grid& g) { Turn(ga.GridIndex(), g); }
+	Turn(GridAddress ga, Grid& g) : Turn(ga.GridIndex(), g) {}
 
 	std::string Outcome() const { return turn_outcome; }
 
