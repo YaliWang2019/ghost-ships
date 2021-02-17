@@ -113,8 +113,24 @@ void FiringDemo()
     system("pause");
 }
 
+void AutoTurnDemo()
+{
+    Grid g;
+    ShipCollection sc;
+    g.PlaceAuto(sc);
+    std::cout << g << "\n\n";
+
+    for (int i = 0; i < 15; i++) {
+        Turn t = Turn::AutoFire(g);
+
+        std::cout << "Target : " << t.Target().AsString() << "\n";
+        std::cout << t.IsHit() << "\n";
+    }
+}
+
 int main()
 {
     //PlacementDemo();
-    FiringDemo();
+    //FiringDemo();
+    AutoTurnDemo();
 }
