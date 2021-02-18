@@ -122,3 +122,24 @@ TEST_CASE("Valid placements should not overlap existing") {
 		REQUIRE(total_lengths == total_ship_spaces);
 	}
 }
+
+TEST_CASE("Hard mode sets cells to miss") {
+
+	Grid g;
+	ShipCollection sc;
+	g.PlaceAuto(sc);
+
+	int number_cells_to_remove = 35;
+	g.ActivateHardMode(35);
+
+	int number_ship_cells = 0;
+	int number_miss_cells = 0;
+
+	for (int i = 0; i < 100; i++) {
+		if (g.CellStatus(i) == "Ship") number_ship_cells++;
+		else if (g.CellStatus(i) == "Miss") number_miss_cells++;
+	}
+
+	REQUIRE(number_ship_cells == sc.TotalLength());
+	REQUIRE(number_miss_cells == number_cells_to_remove);
+}
