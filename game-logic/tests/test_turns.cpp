@@ -1,4 +1,6 @@
+#include <algorithm>
 #include "catch.hpp"
+#include "../src/Adversary.hpp"
 #include "../src/Grid.hpp"
 #include "../src/Turn.hpp"
 
@@ -31,4 +33,25 @@ TEST_CASE("Firing at ships produces correct outcomes") {
 	Turn t6(15, g);
 	REQUIRE(t6.IsHit() == true);
 	REQUIRE(t6.IsShipSunk() == true);
+}
+
+TEST_CASE("PC firing does not repeat addresses") {
+
+	Grid g;
+	ShipCollection sc;
+	g.PlaceAuto(sc);
+
+	Adversary a;
+	Turn first_turn = a.NextTurn(g);
+	std::vector<int> target_indices;
+	target_indices.push_back(first_turn.Target().GridIndex());
+
+	while (g.TotalHits() != sc.TotalLength()) {
+
+		Turn next_turn = a.NextTurn(g);
+		bool already_fired = std::find(target_indices.begin(), target_indices.end(),
+			next_turn.Target().GridIndex()) != target_indices.end();
+		REQUIRE(already_fired == false);
+		target_indices.push_back(next_turn.Target().GridIndex());
+	}
 }
