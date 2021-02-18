@@ -9,19 +9,20 @@ class Adversary {
 public:
 
 		Adversary();
-		void NextTurn(Grid& target_board);
-		void NextTurn(Grid& target_grid, int index); // for testing
+		Turn NextTurn(Grid& target_board);
+		Turn NextTurn(Grid& target_grid, int index); // for testing
 
 private:
 
-	bool last_shot_hit;
-	bool currently_on_target;
-	
+	bool currently_on_target;	
 	int ship_hit_start_index;
+	int last_hit_index;
+
 	bool next_target_set;
 	int next_target;
 
 	void EvaluateTurn(Turn current_turn, Grid target_board);
+	void SetPossibleNextTarget(int target_index, Grid target_board);
 };
 
 #endif

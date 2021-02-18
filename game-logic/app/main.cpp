@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "../src/Adversary.hpp"
 #include "../src/Grid.hpp"
 #include "../src/GridAddress.hpp"
 #include "../src/Turn.hpp"
@@ -128,9 +129,27 @@ void AutoTurnDemo()
     }
 }
 
+void AdversaryDemo()
+{
+    Grid g;
+    ShipCollection sc;
+    g.PlaceAuto(sc);
+    std::cout << g << "\n\n";
+
+    Adversary a;
+
+    while (g.TotalHits() != sc.TotalLength()) {
+        
+        a.NextTurn(g);
+        std::cout<< "\n\n" << g << "\n\n";
+        system("pause");
+    }
+}
+
 int main()
 {
     //PlacementDemo();
     //FiringDemo();
-    AutoTurnDemo();
+    //AutoTurnDemo();
+    AdversaryDemo();
 }
