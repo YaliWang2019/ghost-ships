@@ -26,6 +26,7 @@ public:
 	void SetMiss(int index) { cell_status[index] = 3; }
 
 	int TotalHits() { return total_hits; }
+	bool CellFiredAt(int index) { return CellStatus(index) == "Miss" || CellStatus(index) == "Hit"; }
 
 	bool ValidPlacements(Ship s, int index, std::vector<ShipPlacement>& placements) const;
 	bool ValidPlacements(Ship s, GridAddress ga, std::vector<ShipPlacement>& placements) const 
