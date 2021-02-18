@@ -17,6 +17,7 @@ private:
 	bool currently_on_target;	
 	int ship_hit_start_index;
 	int last_hit_index;
+	int reverse_count;
 
 	bool next_target_set;
 	int next_target;

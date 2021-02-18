@@ -5,6 +5,7 @@ Adversary::Adversary()
 {
 	currently_on_target = false;
 	next_target_set = false;
+	reverse_count = 0;
 }
 
 Turn Adversary::NextTurn(Grid& target_board)
@@ -28,6 +29,7 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 		if (current_turn.IsShipSunk()) {
 			currently_on_target = false;
 			next_target_set = false;
+			reverse_count = 0;
 		}
 		else {
 			if (!currently_on_target) {
@@ -51,32 +53,38 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 
 				if (index_diff < -9) { // moving up
 					next_target = current_turn.Target().GridIndex() - 10;
-					if (next_target < 0) {
+					if (next_target < 0 || target_board.CellFiredAt(next_target)) {
 						// we hit a cell in row A and need to move down below our first hit
 						next_target = ship_hit_start_index + 10;
+						reverse_count++;
 					}
 				}
 				else if (index_diff > -10 && index_diff < 0) { // moving to the left
 					next_target = current_turn.Target().GridIndex() - 1;
 					GridAddress next_add(next_target);
-					if (next_target < 0 || next_add.Row() != current_turn.Target().Row()) {
+					if (next_target < 0 || next_add.Row() != current_turn.Target().Row()
+						|| target_board.CellFiredAt(next_target)) {
 						// we hit col1 and instead of continuing left need to move right of our first hit
 						next_target = ship_hit_start_index + 1;
+						reverse_count++;
 					}
 				}
 				else if (index_diff < 10) { // moving to the right
 					next_target = current_turn.Target().GridIndex() + 1;
 					GridAddress next_add(next_target);
-					if (next_target > 99 || next_add.Row() != current_turn.Target().Row()) {
+					if (next_target > 99 || next_add.Row() != current_turn.Target().Row()
+						|| target_board.CellFiredAt(next_target)) {
 						// we hit col10 and instead of continuing right need to move leftt of our first hit
 						next_target = ship_hit_start_index - 1;
+						reverse_count++;
 					}
 				}
 				else { // moving down
 					next_target = current_turn.Target().GridIndex() + 10;
-					if (next_target > 99) {
+					if (next_target > 99 || target_board.CellFiredAt(next_target)) {
 						// we hit a cell in row J and need to move up above our first hit
 						next_target = ship_hit_start_index - 10;
+						reverse_count++;
 					}
 				}
 			}
@@ -87,6 +95,14 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 		if (last_hit_index == ship_hit_start_index) {
 			SetPossibleNextTarget(ship_hit_start_index, target_board);
 		}
+		else if (reverse_count == 2) {
+			// we previously had multiple hits in one direction, but now are 'lost'
+			// example : two ships placed horizontally, one B2-B4, another C4-C7
+			// we've hit B4 and C4 but have not sunk a vessel, but will find 'empty'
+			// at A4 and D4 -- so we've already 'reversed' and checked both ends, time
+			// to go back to first hit and re-initialize
+			SetPossibleNextTarget(ship_hit_start_index, target_board);
+		}
 		else {
 
 			// our previous hits followed a direction but now we missed; need to reverse
@@ -94,15 +110,19 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 
 			if (index_diff < -9) { // moving up
 				next_target = ship_hit_start_index + 10;
+				reverse_count++;
 			}
 			else if (index_diff > -10 && index_diff < 0) { // moving to the left
 				next_target = ship_hit_start_index + 1;
+				reverse_count++;
 			}
 			else if (index_diff < 10) { // moving to the right
 				next_target = ship_hit_start_index - 1;
+				reverse_count++;
 			}
 			else { // moving down
 				next_target = ship_hit_start_index - 10;
+				reverse_count++;
 			}
 		}
 	}
