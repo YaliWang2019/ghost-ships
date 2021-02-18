@@ -32,6 +32,9 @@
     <ClCompile Include="..\src\Adversary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="demos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\GridAddress.hpp">
@@ -50,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Adversary.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

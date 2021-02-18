@@ -25,6 +25,7 @@
     <ClCompile Include="..\src\ShipCollection.cpp" />
     <ClCompile Include="..\src\ShipPlacement.cpp" />
     <ClCompile Include="..\src\Turn.cpp" />
+    <ClCompile Include="demos.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,7 @@
     <ClInclude Include="..\src\ShipCollection.hpp" />
     <ClInclude Include="..\src\ShipPlacement.hpp" />
     <ClInclude Include="..\src\Turn.hpp" />
+    <ClInclude Include="demos.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
