@@ -150,12 +150,15 @@ void printEmptyBoards() {
 void ClearRow(int row_num) {
 
 	gotoxy(0, row_num);
-	cout << "                                                                    ";
+	cout << "                                                                           ";
 }
 
 void PrintMessage(string msg) {
 
-	ClearRow(26);
+	for (int i = 0; i < 18; i++) {
+		ClearRow(26 + i);
+	}
+
 	gotoxy(8, 26);
 	cout << msg;
 }
@@ -167,7 +170,7 @@ GridAddress GetAddress() {
 	while (!GridAddress::IsValidInput(address_string)) {
 		ClearRow(27);
 		gotoxy(8, 27);
-		cin >> address_string;
+		std::cin >> address_string;
 	}
 
 	GridAddress ga(address_string);
@@ -179,7 +182,7 @@ string GetString()
 	ClearRow(27);
 	gotoxy(8, 27);
 	string input;
-	cin >> input;
+	std::cin >> input;
 	return input;
 }
 
@@ -202,24 +205,37 @@ void UpdatePlayerAddress(GridAddress ga, string s)
 	cout << s.substr(0, 2);
 }
 
-/*void soopa() {
-	for (int i = 0; i < 17; i++) {
-		gotoxy(i, 25 + i);
-		cout << i;
-	}
-}*/
+void UpdateComputerAddress(GridAddress ga, string s)
+{
+	int x = 40 + ga.Column() * 3;
+	// waaaay better ways to do this....
+	int y = 5;
+	if (ga.Row() == 'B') y += 2;
+	if (ga.Row() == 'C') y += 4;
+	if (ga.Row() == 'D') y += 6;
+	if (ga.Row() == 'E') y += 8;
+	if (ga.Row() == 'F') y += 10;
+	if (ga.Row() == 'G') y += 12;
+	if (ga.Row() == 'H') y += 14;
+	if (ga.Row() == 'I') y += 16;
+	if (ga.Row() == 'J') y += 18;
+
+	gotoxy(x, y);
+	cout << s.substr(0, 2);
+}
 
 int main()
 {
 	printUI();
 	system("cls");
-	gotoxy(4, 27);
 	printEmptyBoards();
+	ClearRow(27);
 
 	ShipCollection sc; // presently the 'classic' ships; could be customized in future
 	Grid player_grid;
 	Grid pc_grid;
 	pc_grid.PlaceAuto(sc);
+	Adversary pc;
 
 	for (auto& s : sc.Ships()) {
 
@@ -257,8 +273,66 @@ int main()
 		}
 	}
 
+	int number_player_fires = 0;
+	int number_pc_fires = 0;
 
+	while (player_grid.TotalHits() != sc.TotalLength() && pc_grid.TotalHits() != sc.TotalLength()) {
 
-	PrintMessage("Game is complete. Press enter to quit.");
-	cin.get();
+		PrintMessage("Choose target to fire at:");
+		GridAddress target;
+		bool valid_target = false;
+		while (!valid_target) {
+			GridAddress ga = GetAddress();
+			if (!pc_grid.CellFiredAt(ga.GridIndex())) {
+				target = ga;
+				valid_target = true;
+			}
+		}
+
+		Turn player_turn(target.GridIndex(), pc_grid);
+		string turn_result;
+
+		if (player_turn.IsHit()) {
+			turn_result = "Hit!";
+			if (player_turn.IsShipSunk()) turn_result += " You sunk the PC's " + pc_grid.ShipName(target) + "!";
+			PrintMessage(turn_result);
+			UpdateComputerAddress(target, "xx");
+		}
+		else {
+			turn_result = "Miss!";
+			PrintMessage(turn_result);
+			UpdateComputerAddress(target, "[]");
+		}
+
+		gotoxy(8, 29);
+		system("pause");
+		ClearRow(29);
+
+		Turn pc_turn = pc.NextTurn(player_grid);
+
+		if (pc_turn.IsHit()) {
+			turn_result = "PC Hit! (" + pc_turn.Target().AsString() + ")";
+			if (pc_turn.IsShipSunk()) turn_result += " The PC sunk your " + player_grid.ShipName(pc_turn.Target()) + "!";
+			PrintMessage(turn_result);
+			UpdatePlayerAddress(pc_turn.Target(), "xx");
+		}
+		else {
+			turn_result = "PC Miss!";
+			PrintMessage(turn_result);
+		}
+
+		gotoxy(8, 29);
+		system("pause");
+		ClearRow(29);
+	}
+
+	if (pc_grid.TotalHits() == sc.TotalLength()) {
+
+		PrintMessage("Congratulations, you've won!");
+	}
+	else {
+		PrintMessage("You've lost, try again -- ");
+	}
+
+	std::cin.get();
 }

@@ -14,7 +14,7 @@ class Grid {
 
 public:
 
-	Grid() {}
+	Grid() { total_hits = 0; }
 
 	std::string CellStatus(int index) const;
 	std::string CellStatus(GridAddress add) const { return CellStatus(add.GridIndex()); }
