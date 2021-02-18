@@ -113,38 +113,173 @@ void printUI() {
 
 void printEmptyBoards() {
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(8, 3);
-	cout << "01 02 03 04 05 06 07 08 09 10      01 02 03 04 05 06 07 08 09 10";
+	cout << "01 02 03 04 05 06 07 08 09 10";
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(43, 3);
+	cout << "01 02 03 04 05 06 07 08 09 10";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 5);
-	cout << "A .. .. .. .. .. .. .. .. .. ..    A .. .. .. .. .. .. .. .. .. ..";
+	cout << "A";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 5);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 5);
+	cout << "A";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 5);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 7);
-	cout << "B .. .. .. .. .. .. .. .. .. ..    B .. .. .. .. .. .. .. .. .. ..";
+	cout << "B";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 7);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 7);
+	cout << "B";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 7);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 9);
-	cout << "C .. .. .. .. .. .. .. .. .. ..    C .. .. .. .. .. .. .. .. .. ..";
+	cout << "C";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 9);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 9);
+	cout << "C";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 9);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 11);
-	cout << "D .. .. .. .. .. .. .. .. .. ..    D .. .. .. .. .. .. .. .. .. ..";
+	cout << "D";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 11);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 11);
+	cout << "D";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 11);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 13);
-	cout << "E .. .. .. .. .. .. .. .. .. ..    E .. .. .. .. .. .. .. .. .. ..";
+	cout << "E";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 13);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 13);
+	cout << "E";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 13);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 15);
-	cout << "F .. .. .. .. .. .. .. .. .. ..    F .. .. .. .. .. .. .. .. .. ..";
+	cout << "F";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 15);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 15);
+	cout << "F";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 15);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 17);
-	cout << "G .. .. .. .. .. .. .. .. .. ..    G .. .. .. .. .. .. .. .. .. ..";
+	cout << "G";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 17);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 17);
+	cout << "G";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 17);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 19);
-	cout << "H .. .. .. .. .. .. .. .. .. ..    H .. .. .. .. .. .. .. .. .. ..";
+	cout << "H";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 19);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 19);
+	cout << "H";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 19);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 21);
-	cout << "I .. .. .. .. .. .. .. .. .. ..    I .. .. .. .. .. .. .. .. .. ..";
+	cout << "I";
 
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 21);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 21);
+	cout << "I";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 21);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	gotoxy(6, 23);
-	cout << "J .. .. .. .. .. .. .. .. .. ..    J .. .. .. .. .. .. .. .. .. ..";
+	cout << "J";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(8, 23);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+	gotoxy(41, 23);
+	cout << "J";
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+	gotoxy(43, 23);
+	cout << ".. .. .. .. .. .. .. .. .. ..";
 }
 
 void ClearRow(int row_num) {
@@ -226,6 +361,13 @@ void UpdateComputerAddress(GridAddress ga, string s)
 
 int main()
 {
+	// resize console to fit boards
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, 900, 650, TRUE);
+
+	// print game intro; then on 'enter' print blank boards
 	printUI();
 	system("cls");
 	printEmptyBoards();
