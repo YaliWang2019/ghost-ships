@@ -188,6 +188,29 @@ void Grid::PlaceAuto(ShipCollection ships)
 	}
 }
 
+void Grid::ActivateHardMode(int number_target_cells)
+{
+	// to be run by calling program on player's board IF a harder mode selected;
+	// for example, number_target_cells = 70 will remove 30 blank cells from 
+	// consideration by the pc; number_target_cells = 50 will remove 50; this
+	// makes the probability of the pc getting on target quickly much higher
+
+	std::random_device rd;
+	std::default_random_engine re(rd());
+	std::uniform_int_distribution<int> index_dist(0, 99);
+
+	int num_cells_removed = 0;
+
+	while (num_cells_removed != number_target_cells) {
+
+		int index = index_dist(re);
+		if (cell_status[index] == 0) {
+			cell_status[index] = 3;
+			num_cells_removed++;
+		}
+	}
+}
+
 std::ostream& operator<<(std::ostream& output, const Grid& g)
 {
 	int curr_cell = 0;

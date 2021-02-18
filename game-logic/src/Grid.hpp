@@ -34,6 +34,7 @@ public:
 
 	void PlaceShip(Ship s, ShipPlacement p);
 	void PlaceAuto(ShipCollection ships);
+	void ActivateHardMode(int number_target_cells);
 
 	std::string ShipName(int index) const { return ships[ship_at_cell_index.at(index)].Name; }
 	std::string ShipName(GridAddress ga) const { return ShipName(ga.GridIndex()); }
