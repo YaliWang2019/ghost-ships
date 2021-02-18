@@ -373,12 +373,17 @@ int main()
 	printEmptyBoards();
 	ClearRow(27);
 
-	ShipCollection sc; // presently the 'classic' ships; could be customized in future
-	Grid player_grid;
-	Grid pc_grid;
-	pc_grid.PlaceAuto(sc);
-	Adversary pc;
+	// let user select mode
+	PrintMessage("Choose Mode : [1] Easy  [2] Hard  [3] Very Hard");
+	string mode;
+	while (mode != "1" && mode != "2" && mode != "3") {
+		mode = GetString();
+	}
 
+	ShipCollection sc; // presently only the 'classic' ships; could be customized in future
+	
+	// have user place their ships
+	Grid player_grid;
 	for (auto& s : sc.Ships()) {
 
 		bool can_place = false;
@@ -414,6 +419,15 @@ int main()
 			UpdatePlayerAddress(placements[choice][i], s.Name);
 		}
 	}
+
+	// automatically place PC ships
+	Grid pc_grid;
+	pc_grid.PlaceAuto(sc);
+	Adversary pc;
+
+	// if a harder play mode selected, update player_grid
+	if (mode == "2") player_grid.ActivateHardMode(30);
+	if (mode == "3") player_grid.ActivateHardMode(55);
 
 	int number_player_fires = 0;
 	int number_pc_fires = 0;
