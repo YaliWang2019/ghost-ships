@@ -108,12 +108,81 @@ void SetPos(SHORT i, SHORT j) {// set cursor
 	SetPos(p);
 }
 
+void printEmptyBoards() {
+
+	gotoxy(5, 3);
+	cout << "01 02 03 04 05 06 07 08 09 10     01 02 03 04 05 06 07 08 09 10";
+
+	gotoxy(4, 5);
+	cout << "A .. .. .. .. .. .. .. .. .. ..   A .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 7);
+	cout << "B .. .. .. .. .. .. .. .. .. ..   B .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 9);
+	cout << "C .. .. .. .. .. .. .. .. .. ..   C .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 11);
+	cout << "D .. .. .. .. .. .. .. .. .. ..   D .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 13);
+	cout << "E .. .. .. .. .. .. .. .. .. ..   E .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 15);
+	cout << "F .. .. .. .. .. .. .. .. .. ..   F .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 17);
+	cout << "G .. .. .. .. .. .. .. .. .. ..   G .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 19);
+	cout << "H .. .. .. .. .. .. .. .. .. ..   H .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 21);
+	cout << "I .. .. .. .. .. .. .. .. .. ..   I .. .. .. .. .. .. .. .. .. ..";
+
+	gotoxy(4, 23);
+	cout << "J .. .. .. .. .. .. .. .. .. ..   J .. .. .. .. .. .. .. .. .. ..";
+}
+
+void clearRow(int row_num) {
+
+	gotoxy(0, row_num);
+	cout << "                                                                    ";
+}
+
+std::string getPlacementLocation() {
+	
+	std::string address_string;
+	
+	gotoxy(4, 26);
+	cout << "Input location : ";
+
+	while (!GridAddress::IsValidInput(address_string)) {
+		clearRow(27);
+		gotoxy(4, 27);
+		cin >> address_string;
+	}
+
+
+	return address_string;
+}
+
 int main()
 {   
 	printUI();
 	system("cls");
+	printEmptyBoards();
+
+	std::string user_input = getPlacementLocation();
+	clearRow(26);
+
+	/*
+	
     Grid g;
     ShipCollection sc;
+
+	Grid g2;
+	g2.PlaceAuto(sc);
 
     std::cout << "\nCurrent Board Positions : " << "\n";
     std::cout << "\n" << g << "\n";
@@ -163,9 +232,6 @@ int main()
 
         system("pause");
     }
-    
-    Grid g2;
-    g2.PlaceAuto(sc);
 
     for (int i = 0; i < 100; i++) std::cout << "\n";
     std::cout << "\nFinal Player Positions : " << "\n";
@@ -175,6 +241,10 @@ int main()
     std::cout << "\n" << g2 << "\n\n\n";
 
     std::cout << "\n\n";
+
+	*/
+
+	cout << "\n\n\n";
     system("pause");
 	
 }
