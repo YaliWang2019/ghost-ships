@@ -16,9 +16,12 @@ public:
 	ShipCollection();
 
 	const std::vector<Ship>& Ships() const { return ships; }
+	int TotalLength() const { return total_ship_length; }
 
 private:
+
 	std::vector<Ship> ships;
+	int total_ship_length;
 };
 
 #endif
