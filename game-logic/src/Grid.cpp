@@ -49,7 +49,7 @@ bool Grid::CanPlaceRight(Ship s, int index, ShipPlacement& placement) const
 	GridAddress test_address(index);
 	for (int i = 1; i < s.Length; i++) {
 		index++;
-		if (index < 99) {
+		if (index < 100) {
 			GridAddress new_address(index);
 			if (new_address.Row() != test_address.Row() || cell_status[index] != 0) {
 				can_move_right = false;
