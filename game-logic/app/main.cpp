@@ -140,8 +140,13 @@ void AdversaryDemo()
 
     while (g.TotalHits() != sc.TotalLength()) {
         
-        a.NextTurn(g);
+        Turn next_turn = a.NextTurn(g);
         std::cout<< "\n\n" << g << "\n\n";
+        std::cout << "Fired on " << next_turn.Target().AsString() << "; ";
+        if (next_turn.IsHit()) std::cout << "Hit!";
+        else std::cout << "Miss!";
+        if (next_turn.IsShipSunk()) std::cout << "\nThe " << g.ShipName(next_turn.Target()) << " has been sunk!\n";
+        std::cout << "\n\n";
         system("pause");
     }
 }
