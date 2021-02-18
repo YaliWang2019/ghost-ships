@@ -20,7 +20,6 @@ void Adversary::NextTurn(Grid& target_board)
 
 void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 {
-
 	if (current_turn.IsHit()) {
 
 		if (current_turn.IsShipSunk()) {
@@ -31,11 +30,13 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 			if (!last_shot_hit) {
 				last_shot_hit = true;
 				ship_hit_start_index = current_turn.Target().GridIndex();
-
+				currently_on_target = true;
 
 				std::random_device rd;
 				std::default_random_engine re(rd());
 				std::uniform_int_distribution<int> placement_dist(0, 3);
+
+				std::vector<int> possible_next_targets;
 
 
 			}
@@ -43,6 +44,10 @@ void Adversary::EvaluateTurn(Turn current_turn, Grid target_board)
 
 			}
 		}
+	}
+	else if (currently_on_target) {
+		// we were previously hitting a ship but now missed; need to change directions
+
 	}
 }
 
