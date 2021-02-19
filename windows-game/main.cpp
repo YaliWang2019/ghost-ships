@@ -430,11 +430,12 @@ int main()
 	if (mode == "2") player_grid.ActivateHardMode(30);
 	if (mode == "3") player_grid.ActivateHardMode(55);
 
-	int number_player_fires = 0;
-	int number_pc_fires = 0;
+	int number_of_turns = 0;
 
 	while (player_grid.TotalHits() != sc.TotalLength() && pc_grid.TotalHits() != sc.TotalLength()) {
 
+		number_of_turns++;
+		
 		PrintMessage("Choose target to fire at:");
 		GridAddress target;
 		bool valid_target = false;
@@ -485,11 +486,21 @@ int main()
 
 	if (pc_grid.TotalHits() == sc.TotalLength()) {
 
-		PrintMessage("Congratulations, you've won!");
+		PrintMessage("Congratulations, you've won!");		
 	}
 	else {
 		PrintMessage("You've lost, try again -- ");
 	}
+
+
+	gotoxy(8, 27);
+	cout << "Total # of Turns : " + number_of_turns;
+
+	gotoxy(8, 29);
+	cout << "Player Accuracy : " + to_string((float)pc_grid.TotalHits() / number_of_turns) + "\n";
+
+	gotoxy(8, 31);
+	cout << "PC Accuracy : " + to_string((float)player_grid.TotalHits() / number_of_turns) + "\n\n";
 
 	std::cin.get();
 }
