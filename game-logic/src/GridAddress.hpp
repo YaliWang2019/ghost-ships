@@ -21,6 +21,7 @@ public:
 
 	static bool IsValidInput(std::string s);
 	static bool CanCompileAddress(char row, const int column);
+	static char RowAtIndex(int index) { return row_designators[index / 10];	}
 
 private:
 	char row_;
