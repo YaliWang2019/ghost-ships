@@ -1,6 +1,8 @@
 .vs/
 /game-logic/.vs/
+/game-logic/app/out
 /game-logic/app/x64
+/game-logic/tests/out
 /game-logic/tests/x64
 /windows-game/Debug/
 /windows-game/x64/
