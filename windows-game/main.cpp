@@ -290,7 +290,8 @@ void ClearRow(int row_num) {
 
 void PrintMessage(string msg) {
 
-	for (int i = 0; i < 18; i++) {
+	// adding this to clear several lines in case there is 'leftovers' from bumping keys
+	for (int i = 0; i < 5; i++) {
 		ClearRow(26 + i);
 	}
 
