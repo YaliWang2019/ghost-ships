@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -102,7 +103,7 @@ int main()
 
 			PrintMessage(end_opts);
 			selected_opt = GetString();
-			can_place = find(valid_opts.begin(), valid_opts.end(), selected_opt) != valid_opts.end();
+			can_place = std::find(valid_opts.begin(), valid_opts.end(), selected_opt) != valid_opts.end();
 		}
 
 		int choice = stoi(selected_opt) - 1;
