@@ -1,4 +1,4 @@
-# ghost ships (CMake)
+# ghost ships (portable)
 
 A portable C++ console version of the game built using CMake. 
 
