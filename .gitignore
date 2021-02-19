@@ -6,5 +6,5 @@
 /game-logic/tests/x64
 /windows-game/Debug/
 /windows-game/x64/
-/cmake-version/.vs
-/cmake-version/out
+/portable-game/.vs
+/portable-game/out
